@@ -1,26 +1,28 @@
 DemoApp::Application.routes.draw do
   
-  #get "users/new"
+  resources :documents
   
   resources :users
-
-  match '/signup',  :to => 'users#new'
-  match '/contact', :to => 'page#contact'
-  match '/about',   :to => 'page#about'
-  match '/help',    :to => 'page#help'
-
-  root :to => 'page#home'
-  
-  #get "page/home"
-
-  #get "page/contact"
-  
-  #get "page/about"
-
+  resources :sessions, :only => [:new, :create, :destroy]
+  resources :compteur
   resources :microposts
+  
+  root :to => 'page#home'
 
+  match '/signup',   :to => 'users#new'
+  match '/signin',   :to => 'sessions#new'
+  match '/signout',  :to => 'sessions#destroy'  
+  match '/contact',  :to => 'page#contact'
+  match '/about',    :to => 'page#about'
+  match '/help',     :to => 'page#help'
+  
+  match '/app',      :to => 'compteur#index'
+  match '/app/plus', :to => 'compteur#plus'
+  match '/app/moins',:to => 'compteur#moins'
 
-
+  match '/doc',      :to => 'documents#index'
+  match '/doc/new',  :to => 'documents#new'
+  
   
   # The priority is based upon order of creation:
   # first created -> highest priority.

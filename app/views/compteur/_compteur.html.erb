@@ -1,0 +1,12 @@
+
+<%=  @service_output %>
+<TABLE id= "appCpt">
+	<TH>Application : compteur</TH>
+	<TR>
+		<TD colspan="2" class="valeur"><%= @cpt.val %></TD>
+	</TR>
+	<TR>
+		<TD class="do"> <%= button_to("moins", app_moins_path(:cpt => @cpt.val), :action => "moins")%> </TD>
+		<TD class="do"> <%= button_to("plus", app_plus_path(:cpt => @cpt.val), :action => "plus")%></TD>
+	</TR>
+</TABLE>

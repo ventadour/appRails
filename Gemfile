@@ -6,8 +6,12 @@ gem 'rails', '3.2.13'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'sqlite3'
-
 gem 'gravatar_image_tag'
+gem 'will_paginate'
+gem 'gtk2'
+gem 'em-websocket'
+gem 'socket.io-rails'
+
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -24,6 +28,28 @@ end
 gem 'webrick'
 
 gem 'jquery-rails'
+
+group :development do
+  gem 'rspec-rails', '2.5.0'
+  gem 'faker','0.3.1'
+end
+
+group :test do
+  gem 'rspec', '2.5.0'
+  gem 'webrat', '0.7.1'
+end
+
+group :production do
+  gem 'gravatar_image_tag'
+  gem 'will_paginate'
+  gem 'pg'
+end
+
+#Déploiement
+gem 'execjs'
+gem 'sass-rails', '~> 3.1.4'
+gem 'compass'
+gem 'haml'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

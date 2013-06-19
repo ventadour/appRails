@@ -1,0 +1,13 @@
+<li>
+	<table id= "listeUser">
+		<tr>
+			<td rowspan=2 class="avatar"><%= gravatar_for user, :size => 80, :class => "log" %></td>
+			<td class="info"> <%= link_to user.nom, user,:title => "Afficher #{user.nom}"%>	<% store_location%></td>
+		</tr>
+		<% if current_user.admin? %>
+		<tr>
+			<td class="info"> <%= link_to "Supprimer", user, :method => :delete, :confirm => "Etes-vous certain ?",:title => "Supprimer #{user.nom}" %> </td>
+		</tr>
+		<% end %>
+	</table>
+</li>

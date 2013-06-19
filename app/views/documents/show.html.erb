@@ -1,0 +1,104 @@
+<div id="option">
+	<ul class="optionMenu">
+		<li class="item1">
+			<a href="#">Documents</a>
+			<ul>
+				<li class="subitem1">
+					<%= link_to "Liste des documents", documents_path%>
+				</li>
+				<li class="subitem1">
+					<%= link_to "Nouveau", new_document_path%>
+				</li>
+				<li class="subitem1">
+					<%= link_to "Editer", edit_document_path(@document)%>
+				</li>
+			</ul>
+		</li>
+		<li class="item1">
+			<a href="#">Répétition (Java):</a>
+			<ul>
+				<%if @infoJava.include?("content") %>
+				<li class="subitem1">
+					<a href="#"><%= @infoJava["content"] %></a>
+				</li>
+				<%else%>
+				<% @infoJava.each{ |k, v|%>
+				<li class="subitem1">
+					<a href="#"><%= "#{k} repété #{v} fois" %></a>
+				</li>
+				<%}%>
+				<%end%>
+			</ul>
+		</li>
+		<li class="item1">
+			<a href="#">Répétition (Ruby):</a>
+			<ul>
+				<%if @info.include?("content") %>
+				<li class="subitem1">
+					<a href="#"><%= @info["content"] %></a>
+				</li>
+				<%else%>
+				<% @info.each{ |k, v|%>
+				<li class="subitem1">
+					<a href="#"><%= "#{k} repété #{v} fois" %></a>
+				</li>
+				<%}%>
+				<%end%>
+			</ul>
+		</li>
+
+	</ul>
+</div>
+
+<div id="vue">
+	<h1><%= logoDoc %> Documents</h1>
+	<hr>
+	<%if @document.user_id.to_i == current_user.id.to_i%>
+	<p>
+		<b>Titre:</b>
+		<%= @document.titre %>
+	</p>
+	<p>
+		<b>Contenu:</b></br>
+		<%= text_area_tag 'description', @document.content, :disabled => true %></br>
+		<b>Répétition (Ruby):</b>
+		<%= @info%>
+		<%if @info.include?("content") %>
+		<%= @info["content"] %>
+		<%else%>
+		<ul>
+			<% @info.each{ |k, v|%>
+			<li>
+				<%= "#{k} repété #{v} fois" %>
+			</li>
+			<%}%>
+		</ul>
+		<%end%>
+		<br/>
+		<b>Répétition (Java):</b>
+		<%= @infoJava %>
+		<%if @infoJava.include?("content") %>
+		<%= @infoJava["content"] %>
+		<%else%>
+		<ul>
+			<% @infoJava.each{ |k, v|%>
+			<li>
+				<%= "#{k} repété #{v} fois" %>
+			</li>
+			<%}%>
+		</ul>
+		<%end%>
+	</p>
+	<hr>
+	<%= link_to icoReturn, documents_path %> |
+	<%= link_to icoEdit, edit_document_path(@document) %>
+	<%else%>
+
+	<p>
+		<%= link_to icoPrivate %> Ce document ne vous appartient pas !
+	</p>
+	<hr>
+	<%= link_to icoReturn, documents_path %>
+	<%end%>
+</div>
+

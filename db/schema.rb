@@ -11,7 +11,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130529135646) do
+ActiveRecord::Schema.define(:version => 20130606084518) do
+
+  create_table "documents", :force => true do |t|
+    t.string   "titre"
+    t.string   "content"
+    t.string   "user_id"
+    t.string   "integer"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "microposts", :force => true do |t|
     t.string   "content"
@@ -27,6 +36,7 @@ ActiveRecord::Schema.define(:version => 20130529135646) do
     t.datetime "updated_at",         :null => false
     t.string   "encrypted_password"
     t.string   "salt"
+    t.boolean  "admin"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

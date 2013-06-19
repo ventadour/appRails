@@ -1,0 +1,23 @@
+<div id="option">
+	<ul class="optionMenu">
+		<li class="item1">
+			<a href="#">Documents</a>
+			<ul>
+				<li class="subitem1">
+					<%= link_to "Liste des documents", documents_path%>
+				</li>
+				<li class="subitem1">
+					<%= link_to "Nouveau", new_document_path%>
+				</li>
+			</ul>
+		</li>
+	</ul>
+</div>
+
+<div id="vue">
+<h1><%= logoDoc %> Edition</h1>
+<hr>
+<%= render 'form' %>
+<hr>
+<%= link_to icoReturn, documents_path %> |
+</div>

@@ -1,20 +1,34 @@
+# encoding: utf-8
 <!DOCTYPE html>
 <html>
-  <head>
-    <title><%= titre %></title>
-    <%= csrf_meta_tag %>
-    <%= render 'layouts/stylesheets' %>
+	<head>
+		<title><%= titre %></title>
+		<%= csrf_meta_tag %>
+		<%= render 'layouts/stylesheets' %>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+		<%= javascript_include_tag :application %>
+		<%= favicon_link_tag 'logoApp.ico', :size=>"20x20"%>
+	</head>
+	<body>
+		<div id="page">
+			<div id="container">
+				<%= render 'layouts/header'%>
+				<section>
+					<% flash.each do |key, value| %>
+					<div class="flash <%= key %>">
+						<%= value %>
+					</div>
+					<% end %>
+					<%= yield %>				
+				</section>
+				<%=
+					#debug(params) if Rails.env.development?
+				%>
+			</div>
+			<%= render 'layouts/footer'%>
 
-  </head>
-  <body>
-    <div class="container">
-      <%= render 'layouts/header'%>
-      <section class="round">
-        <%= yield %>
-      </section>
-      <%= render 'layouts/footer'%>
-      <%= debug(params) if Rails.env.development? %>
-    </div>
-  </body>
+		</div>
+	</body>
 </html>
 

@@ -1,19 +1,27 @@
-<p id="notice"><%= notice %></p>
+<h1><%= logoUser %> Profile </h1>
 
+<p id="notice">
+	<%= notice %>
+</p>
+<hr>
 <table class="profile" summary="Information profil">
-  <tr>
-    <td class="main">
-      <h1>
-        <%= gravatar_for @user %>
-        <%= @user.nom %>
-      </h1>
-    </td>
-    <td class="sidebar round">
-      <strong>Nom</strong> <%= @user.nom %><br />
-      <strong>URL</strong>  <%= link_to user_path(@user), @user %>
-    </td>
-  </tr>
+	<tr>
+		<td class="main">
+			<h1>
+				<%= gravatar_for @user, :size => "64x64" %>
+				<%= @user.nom %>
+				<%if @user == current_user%>
+				| <%= link_to logoEdit, edit_user_path(@user) %>
+				<%end%> 
+			</h1>
+			<br/>
+			<P>
+				<b>Email:</b> <%= @user.email%><br/>
+				<b>Statut:</b> <%if @user.admin?%> Administrateur <%else%> Utilisateur <%end%>
+			</p>
+		</td>
+	</tr>
 </table>
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<%= link_to icoReturn, session[:return_to] %>
+
